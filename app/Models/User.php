@@ -43,4 +43,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function indekos(){
+		  return $this->hasMany('App\Models\Indekos', 'owner');
+    }
+
+    public function favorit(){
+        return $this->belongsToMany('App\Models\Indekos', 'favorite', 'user_id', 'boarding_house_id');
+    }
 }

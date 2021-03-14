@@ -14,11 +14,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group([
         'prefix'        => 'user' ,
         'as'            => 'user.',      
-        'middleware'    => 'role:pencari',
+        'middleware'    => 'role:pengguna',
     ], function(){
-        Route::get('/page', function () {
-            return view('pencari.index');
-        })->name('pencari.home');
+        Route::get('indekos', [\App\Http\Controllers\Pengguna\IndekosController::class, 'index'])->name('indekos');
+        Route::get('indekos/{id}', [\App\Http\Controllers\Pengguna\IndekosController::class, 'show'])->name('indekos.show');
+
+        Route::resource('favorite', \App\Http\Controllers\Pengguna\FavoriteController::class);
     });
 
     Route::group([
@@ -26,9 +27,8 @@ Route::group(['middleware' => 'auth'], function() {
         'as'            => 'owner.',      
         'middleware'    => 'role:pemilik',
     ], function(){
-        Route::get('/', function () {
-            return view('pemilik.index');
-        })->name('pemilik.home');
+       Route::resource('indekos', \App\Http\Controllers\Pemilik\IndekosController::class);
+        
     });
 
     Route::group([
@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function() {
     ], function(){
         Route::get('/page1', function () {
             return view('admin.index');
-        })->name('admin.home');
+        })->name('home');
     });
 });
 

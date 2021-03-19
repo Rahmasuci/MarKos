@@ -12,7 +12,7 @@
     </div>
 
     <div class="section-body">
-      <div>
+      <div class="">
         <a href="{{route('owner.indekos.create')}}" class="btn btn-primary"> <i class="fas fa-plus"></i> Tambah Indekos</a>
       </div>
       <div class="row">
@@ -46,6 +46,10 @@
                     <a href="{{route('owner.indekos.edit', $kos->id) }}" class="btn btn-warning mr-1">
                       <i class="fas fa-pencil-alt"></i>
                     </a>
+                    <a href="{{route('owner.foto-indekos.show', $kos->id) }}" class="btn btn-success mr-1">
+                      <i class="fas fa-images"></i>
+                    </a>
+                    <!-- <button class="btn btn-success mr-1" id="modal-edit-photo"><i class="fas fa-images"></i> -->
                   </div>
               </div>
             </div>
@@ -58,8 +62,8 @@
       @endif
       </div>
     </div>
-
-  
+    
   </section>
 </div>
+
 @endsection

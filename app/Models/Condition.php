@@ -13,10 +13,7 @@ class Condition extends Model
 
     protected $fillable = [
         'condition',
-        'criteria_id',
     ];
-
-    public $timestamps = false;
 
     public function kriteria(){
         return $this->belongsToMany('App\Models\Criteria', 'condition_criteria', 'condtion_id', 'criteria_id');

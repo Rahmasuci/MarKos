@@ -12,11 +12,8 @@ class Facilities extends Model
     protected $table = 'facilities';
 
     protected $fillable = [
-        'facilities',
-        'criteria_id',
+        'facility',
     ];
-
-    public $timestamps = false;
 
     public function kriteria(){
         return $this->belongsToMany('App\Models\Criteria', 'facility_criteria', 'facility_id', 'criteria_id');

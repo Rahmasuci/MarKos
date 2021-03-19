@@ -3,19 +3,20 @@
 @section('content')
 <div class="main-content">
     <section class="section">
+    @foreach($indekos as $kos)
       <div class="section-header">
         <h1>Edit Indekos</h1>
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
           <div class="breadcrumb-item"><a href="{{route('owner.indekos.index')}}">Indekos</a></div>
-          <div class="breadcrumb-item"><a href="#">Detail</a></div>
+          <div class="breadcrumb-item"><a href="{{route('owner.indekos.show', $kos->id )}}">Detail</a></div>
           <div class="breadcrumb-item ">Edit Indekos</div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-body">
-          @foreach($indekos as $kos)
+          
           <form method="post" action="{{route('owner.indekos.update', $kos->id)}}" enctype="multipart/form-data">
           @method('patch')
           @csrf
@@ -89,7 +90,8 @@
                     <option value=">15km" @foreach ($kos->kriteria as $kri) @if('>15km' == $kri->distance) selected @endif @endforeach> > 15 Km </option>
                   </select>
                 </div>
-
+              </div>
+              <div class="col-md-6"> 
                 <div class="form-group">
                     <label for="condition">Kondisi Bangunan</label>
                     <div class="row">
@@ -105,8 +107,6 @@
                         @endforeach
                     </div>    
                 </div>
-              </div>
-              <div class="col-md-6"> 
                 <div class="form-group">
                   <label for="facility">Fasilitas</label>
                   <div class="row">
@@ -128,23 +128,9 @@
                   <textarea name="description" id="desc" class="summernote-simple"></textarea>
                 </div>
 
-                
-                <label for="image">File Gambar</label>
-                <div class="gallery gallery-md">
-                    @foreach($kos->gambar as $img)
-                    <div class="gallery-item" data-image="{{ asset('storage/indekos/'.$img->path_img) }}" data-title="Image {{$loop->index}}"></div>
-                    @endforeach
-                </div>
-
-                <!-- <div class="form-group">
-                  <label for="image">File Gambar</label>
-                  <input class="form-control" type="file" name="image[]" id="image" multiple />
-                  <span class="text-warning">Jika gambar tidak diubah maka biarkan kosong</span>
-                </div> -->
-
                 <div class="form-group float-right">
-                  <button type="reset" class="btn btn-danger">Reset</button>
-                  <button type="submit" class="btn btn-success">Simpan</button>       
+                  <a href="{{route('owner.indekos.show', $kos->id )}}" class="btn btn-warning">Kembali</a>
+                  <button type="submit" class="btn btn-primary">Simpan</button>       
                 </div>
 
               </div>

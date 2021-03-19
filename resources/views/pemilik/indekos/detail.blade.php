@@ -90,7 +90,10 @@
                                     
                         <div class="text-right mt-4">
                             <a href="{{route('owner.indekos.edit', $i->id) }}" class="btn btn-warning btn-action mr-1">
-                            <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>                            
+                            <a href="{{route('owner.foto-indekos.show', $i->id) }}" class="btn btn-success mr-1">
+                                <i class="fas fa-images"></i>
                             </a>
                         </div>
                     </div>

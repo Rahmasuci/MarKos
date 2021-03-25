@@ -53,7 +53,7 @@
                                 <h4>Tentang</h4>
                                 <i class="fas fa-map-marker-alt"></i> <span>Alamat : {{$i->address}}</span> <br>
                                 @foreach($i->kriteria as $kri)
-                                <i class="fas fa-dollar-sign"></i> <span>Harga  : {{$kri->price}}</span><br>
+                                <i class="fas fa-dollar-sign"></i> <span> Harga  : Rp.<span id="harga">{{$kri->price}}</span> </span><br>
                                 <i class="fas fa-venus-mars"></i> <span>Khusus {{$i->type}}</span> <br>
                                 <i class="fas fa-expand-arrows-alt"></i> <span>Luas Kamar : {{$kri->large}}</span><br>
                                 <i class="fas fa-road"></i> <span>Jarak dari Unej  : {{$kri->distance}}</span><br>

@@ -53,7 +53,8 @@
         </div>
     </div>
     
-    
+    <script src="{{ asset ('js/jquery.mask.min.js') }}"></script>
+
     <script>
         @if(Session::has('success'))
             iziToast.success({
@@ -73,32 +74,12 @@
             @endforeach
         @endif
     </script>
-
-    <!-- TAMBAH FAV INDEKOS -->
+    
     <script>
-    jQuery(document).ready(function() {      
-        $('.fav').click(function(event){
-        var boarding_house_id    = $(this).attr("value");
-        // console.log(boarding_house_id)  
-            $.ajax({
-                url:"{{ route('user.favorite.store') }}",
-                method:"POST",          
-                dataType: 'JSON', 
-                data:{"_token": "{{ csrf_token() }}",
-                    "boarding_house_id":boarding_house_id,}
-                })
-            .done(function(hasil){
-                iziToast.success({
-                    title: 'Berhasil',
-                    message: hasil.success,
-                    position: 'topRight'
-                });
-            })        
-            .fail(function(request, error, status){
-                console.log("error");
-            });
-        });
-    });
+        $(document).ready(function(){
+        // Format mata uang.
+            $( '#harga' ).mask('#.000.000.000.000.000', {reverse: true});
+        })
     </script>
 
     <script src="{{asset ('assets_stisla/assets/js/scripts.js')}}"></script>

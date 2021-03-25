@@ -51,14 +51,7 @@
 
                 <div class="form-group">
                   <label for="price">Harga</label>
-                  <select class="form-control custom-select" name="price" required>
-                    <option selected disabled>Select One</option>
-                    <option value="300k"> < Rp.300.000</option>
-                    <option value="300k-400k">Rp.300.000-Rp.400.000</option>
-                    <option value="400k-500k">Rp.400.000-Rp.500.000</option>
-                    <option value="500k-600k">Rp.500.000-Rp.600.000</option>
-                    <option value=">600k"> > Rp.600.000</option>
-                  </select>
+                  <input type="text" name="price" id="harga" class="form-control">
                 </div>
 
                 <div class="form-group">
@@ -126,12 +119,12 @@
                 <div class="form-group">
                   <label for="image">File Gambar</label>
                   <input class="form-control" type="file" name="image[]" id="image" multiple required/>
-                  <span class="text-warning">Bisa upload gambar lebih dari 1</span>
+                  <span class="text-danger">Bisa upload gambar lebih dari 1</span>
                 </div>
 
                 <div class="form-group float-right">
-                  <button type="reset" class="btn btn-danger">Reset</button>
-                  <button type="submit" class="btn btn-success">Simpan</button>       
+                  <button type="reset" class="btn btn-warning">Reset</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>       
                 </div>
 
               </div>
@@ -144,6 +137,7 @@
 
 <aside class="control-sidebar control-sidebar-dark">
 </aside>
+
 <script>
 $("#desc").summernote({
     toolbar: [

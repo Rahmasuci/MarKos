@@ -31,13 +31,13 @@
                 <div class="profile-widget-name">
                 {{ $kos->name }}
                   <div class="text-muted d-inline font-weight-normal">
-                    <div class="slash"></div> Khusus {{$kos->type}}
+                  @foreach($kos->kriteria as $kri)
+                    <div class="slash"></div> Rp.<span id=harga>{{$kri->price}}</span> 
+                  @endforeach                     
                   </div>
                 </div>
                   <i class="fas fa-map-marker-alt"> </i> <span>Alamat : {{$kos->address}}</span> <br>
-                  @foreach($kos->kriteria as $kri)
-                  <i class="fas fa-dollar-sign"></i> <span>Harga  : {{$kri->price}}</span><br>
-                  @endforeach 
+                  <i class="fas fa-venus-mars"></i> <span>Khusus  : {{$kos->type}}</span><br>
                   {!!$kos->description!!}                  
                   <div class="text-right mt-2">
                     <a href="{{route('owner.indekos.show', $kos->id) }}" class="btn btn-info mr-1">
@@ -49,7 +49,6 @@
                     <a href="{{route('owner.foto-indekos.show', $kos->id) }}" class="btn btn-success mr-1">
                       <i class="fas fa-images"></i>
                     </a>
-                    <!-- <button class="btn btn-success mr-1" id="modal-edit-photo"><i class="fas fa-images"></i> -->
                   </div>
               </div>
             </div>

@@ -43,7 +43,7 @@
                                     <td>{{$facility->updated_at}}</td>
                                     <td>
                                         <button class="btn btn-warning" id="modal-update-{{$loop->iteration}}"><i class="fas fa-pencil-alt"></i> </button>
-                                         <button class="btn btn-danger" id="modal-delete-{{$loop->iteration}}"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-danger" id="modal-delete-{{$loop->iteration}}"><i class="fas fa-trash"></i></button>
                                     </td>
                                     </tr>
                                 @endforeach

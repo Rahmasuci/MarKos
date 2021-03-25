@@ -21,6 +21,7 @@ class FavoriteController extends Controller
     public function index()
     {   
         $user_id =  Auth::user()->id;
+        $favorite = Favorite::all();
 
         $indekos = Indekos::leftJoin('favorite', 'boarding_houses.id', '=', 'favorite.boarding_house_id')
             ->where('favorite.user_id', '=', $user_id)
@@ -56,12 +57,16 @@ class FavoriteController extends Controller
         $user_id =  Auth::user()->id;
         $user = User::find($user_id);
         $indekos = Indekos::find($request->boarding_house_id);
-
+               
         $user->favorit()->attach($indekos);
 
-        return response()->json([
-            'success' => 'Indekos telah ditambahkan ke Favoritmu'
-        ]);
+        Session::flash('success', 'Indekos telah ditambahkan ke Favoritmu');
+
+        return redirect()->route('user.indekos');
+
+        // return response()->json([
+        //     'success' => 'Indekos telah ditambahkan ke Favoritmu'
+        // ]);
 
     }
 

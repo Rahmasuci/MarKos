@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function() {
     ], function(){
         Route::get('indekos', [\App\Http\Controllers\Pengguna\IndekosController::class, 'index'])->name('indekos');
         Route::get('indekos/{id}', [\App\Http\Controllers\Pengguna\IndekosController::class, 'show'])->name('indekos.show');
-        Route::resource('favorite', \App\Http\Controllers\Pengguna\FavoriteController::class);
+        Route::resource('favorite', \App\Http\Controllers\Pengguna\FavoriteController::class, array('except' => array('create', 'edit', 'update')));
     });
 
     Route::group([
@@ -28,8 +28,8 @@ Route::group(['middleware' => 'auth'], function() {
         'as'            => 'owner.',      
         'middleware'    => 'role:pemilik',
     ], function(){
-       Route::resource('indekos', \App\Http\Controllers\Pemilik\IndekosController::class);
-       Route::resource('foto-indekos', \App\Http\Controllers\Pemilik\ImageController::class);        
+       Route::resource('indekos', \App\Http\Controllers\Pemilik\IndekosController::class, array('except' => array('destroy')));
+       Route::resource('foto-indekos', \App\Http\Controllers\Pemilik\ImageController::class, array('except' => array('index', 'create', 'edit')));        
     });
 
     Route::group([
@@ -37,9 +37,9 @@ Route::group(['middleware' => 'auth'], function() {
         'as'            => 'admin.',      
         'middleware'    => 'role:admin',
     ], function(){
-        Route::resource('user', \App\Http\Controllers\UserController::class);
-        Route::resource('facility', \App\Http\Controllers\Admin\FacilityController::class);
-        Route::resource('condition', \App\Http\Controllers\Admin\ConditionController::class);
+        Route::resource('user', \App\Http\Controllers\UserController::class, array('except' => array('store', 'edit', 'destroy')));
+        Route::resource('facility', \App\Http\Controllers\Admin\FacilityController::class, array('except' => array('create', 'edit', 'show')));
+        Route::resource('condition', \App\Http\Controllers\Admin\ConditionController::class, array('except' => array('create', 'edit', 'show')));
     });
 });
 

@@ -63,7 +63,7 @@ class IndekosController extends Controller
             'type'          => 'required|in:putra,putri',  
             'address'       => 'required',
             'description'   => 'nullable',
-            'price'         => 'required',
+            'price'         => 'required|numeric',
             'distance'      => 'required',  
             'large'         => 'required',
             'condition'     => 'required',
@@ -165,8 +165,13 @@ class IndekosController extends Controller
      */
     public function update(Request $request, $id)
     {   
+        // dd($request->price);
         $indekos = Indekos::where('id',$id)->first();
         $kriteria = Criteria::where('boarding_house_id', $id)->first();
+
+        $price = $request->price;
+        $number = str_replace(".", "", $price);
+        // dd($number);    
         
         // dd($kriteria);
         $this->validate($request,[
@@ -174,7 +179,7 @@ class IndekosController extends Controller
             'type'          => 'required|in:putra,putri',  
             'address'       => 'required',
             'description'   => 'nullable',
-            'price'         => 'required',
+            'price'         => 'required|numeric',
             'distance'      => 'required',  
             'large'         => 'required',
             'condition'     => 'required',
@@ -189,7 +194,7 @@ class IndekosController extends Controller
         ]);
         
         $kriteria->update([
-            'price'             => $request->price,
+            'price'             => $number,
             'distance'          => $request->distance,  
             'large'             => $request->large,
         ]);

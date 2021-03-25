@@ -28,19 +28,27 @@
                 <div class="profile-widget-name">
                 {{ $kos->name }}
                   <div class="text-muted d-inline font-weight-normal">
-                    <div class="slash"></div> Khusus {{$kos->type}}
+                    @foreach($kos->kriteria as $kri)
+                    <div class="slash"></div> Rp.<span id="harga{{$kos->id}}">{{$kri->price}}</span> 
+                    @endforeach   
                   </div>
                 </div>
                   <i class="fas fa-map-marker-alt"> </i> <span>Alamat : {{$kos->address}}</span> <br>
-                  @foreach($kos->kriteria as $kri)
-                  <i class="fas fa-dollar-sign"></i> <span>Harga  : {{$kri->price}}</span><br>
-                  @endforeach 
-                  {!!$kos->description!!}                  
+                  <i class="fas fa-venus-mars"></i> <span>Khusus  : {{$kos->type}}</span><br>
+                  {!!$kos->description!!}                
                   <div class="text-right mt-2">
-                    <a href="{{route('user.indekos.show', $kos->id) }}" class="btn btn-primary mr-1">
+                    <a href="{{route('user.indekos.show', $kos->id) }}" class="btn btn-info mr-1">
                       <i class="fas fa-eye"></i>
                     </a>
-                    <button class="btn btn-danger mr-1  fav" id="fav" value="{{$kos->id}}"><i class="fas fa-heart"></i></button>
+                    <a href="{{ route('user.favorite.store') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('fav-form{{$loop->iteration}}').submit();"  class="btn btn-danger mr-1 @foreach($favorite as $fav) @if($fav->boarding_house_id == $kos->id) d-none @endif @endforeach">
+                        <i class="fas fa-heart"></i> 
+                    </a>
+                    <form id="fav-form{{$loop->iteration}}" action="{{ route('user.favorite.store') }}" method="POST" class="d-none">
+                        @csrf
+                        <input type="number" name="boarding_house_id" id="" value="{{$kos->id}}">
+                    </form>                    
                   </div>
               </div>
             </div>
@@ -57,5 +65,12 @@
   
   </section>
 </div>
-
+<script>
+    $(document).ready(function(){
+    // Format mata uang.
+      @foreach($indekos as $kos)
+        $( '#harga{{$kos->id}}' ).mask('#.000.000.000.000.000', {reverse: true});
+      @endforeach
+    })
+</script>
 @endsection

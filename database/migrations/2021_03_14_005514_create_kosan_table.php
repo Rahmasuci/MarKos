@@ -34,7 +34,7 @@ class CreateKosanTable extends Migration
 
         Schema::create('criterias', function (Blueprint $table) {
             $table->id();
-            $table->string('price');
+            $table->decimal('price', 10,0);
             $table->string('distance');
             $table->string('large');            
             $table->unsignedBigInteger('boarding_house_id');

@@ -55,16 +55,9 @@
 
                 <div class="form-group">
                   <label for="price">Harga</label>
-                  <select class="form-control custom-select" name="price" required>
-                    <option selected disabled>Select One</option>
-                    <option value="<300k" @foreach ($kos->kriteria as $kri) @if('<300k' == $kri->price) selected @endif @endforeach
-                    > < Rp.300.000</option>
-                    <option value="300k-400k" @foreach ($kos->kriteria as $kri) @if('300k-400k' == $kri->price) selected @endif @endforeach
-                    >Rp.300.000-Rp.400.000</option>
-                    <option value="400k-500k" @foreach ($kos->kriteria as $kri) @if('400k-500k' == $kri->price) selected @endif @endforeach>Rp.400.000-Rp.500.000</option>
-                    <option value="500k-600k" @foreach ($kos->kriteria as $kri) @if('500k-600k' == $kri->price) selected @endif @endforeach>Rp.500.000-Rp.600.000</option>
-                    <option value=">600k" @foreach ($kos->kriteria as $kri) @if('>600k' == $kri->price) selected @endif @endforeach> > Rp.600.000</option>
-                  </select>
+                  @foreach ($kos->kriteria as $kri)
+                  <input type="text" name="price" id="harga" class="form-control" value="{{$kri->price}}">
+                   @endforeach
                 </div>
 
                 <div class="form-group">

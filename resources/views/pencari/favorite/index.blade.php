@@ -13,6 +13,7 @@
 
     <div class="section-body">
       <div class="row">
+        @if($indekos->isNotEmpty())
         @foreach($indekos as $kos)
         <div class="col-4 col-md-4 col lg-4">
             <div class="card profile-widget">
@@ -32,31 +33,52 @@
                 </div>
                   <i class="fas fa-map-marker-alt"> </i> <span>Alamat : {{$kos->address}}</span> <br>
                   @foreach($kos->kriteria as $kri)
-                  <i class="fas fa-dollar-sign"></i> <span>Harga  : {{$kri->price}}</span><br>
+                  <i class="fas fa-dollar-sign"></i> <span>Harga  : Rp.<span id="harga{{$kos->id}}">{{$kri->price}}</span></span><br>
                   @endforeach 
-                  {!!$kos->description!!}                  
+                  {!!$kos->description!!}               
                   <div class="text-right mt-2">
-                    <a href="{{route('user.favorite.show', $kos->id) }}" class="btn btn-primary mr-1">
+                    <a href="{{route('user.favorite.show', $kos->id) }}" class="btn btn-info mr-1">
                       <i class="fas fa-eye"></i>
                     </a>
-                    <a href="{{route('user.favorite.destroy', $kos->id) }}" 
-                        onclick="event.preventDefault();
-                        document.getElementById('del-form').submit();" class="btn btn-warning mr-1">
-                      <i class="fas fa-trash"></i>
-                    </a>
-                     <form id="del-form" action="{{route('user.favorite.destroy', $kos->id)}}" method="POST">
-                        @method('delete')
-                        @csrf
-                    </form>
+                    <button class="btn btn-danger" id="modal-delete-{{$kos->id}}"><i class="fas fa-trash"></i></button>
                   </div>
               </div>
             </div>
         </div>
         @endforeach
+         @else
+        <div class="col-12 mt-4">
+          <p class="text-center">Belum ada Favorit Indekos</p>   
+        </div>
+      @endif
       </div>
     </div>
-
   
+    @include('pencari.favorite.delete')
   </section>
 </div>
+<script>
+  $(document).ready(function(){
+  // Format mata uang.
+    @foreach($indekos as $kos)
+      $( '#harga{{$kos->id}}' ).mask('#.000.000.000.000.000', {reverse: true});
+    @endforeach
+  })
+</script>
+<script>
+@foreach($indekos as $kos)
+  $("#modal-delete-{{$kos->id}}").fireModal({
+    title: 'Hapus Favorit Indekos',
+    body: $("#modal-delete-part{{$kos->id}}"),
+    footerClass: 'bg-whitesmoke',
+    autoFocus: false,
+    shown: function(modal, form) {
+      console.log(form)
+    }
+  });
+@endforeach
+$('#closeModal').click(function() {
+    $('#fire-modal-1').modal('hide');
+});
+</script>
 @endsection

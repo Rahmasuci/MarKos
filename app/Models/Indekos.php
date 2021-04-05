@@ -34,4 +34,8 @@ class Indekos extends Model
     public function userFav(){
         return $this->belongsToMany('App\Models\User', 'favorite', 'user_id', 'boarding_house_id');
     }
+
+    public function result(){
+		  return $this->hasMany('App\Models\Result', 'boarding_house_id');
+    }
 }

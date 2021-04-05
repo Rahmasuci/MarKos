@@ -53,7 +53,7 @@
                                 <h4>Tentang</h4>
                                 <i class="fas fa-map-marker-alt"></i> <span>Alamat : {{$i->address}}</span> <br>
                                 @foreach($i->kriteria as $kri)
-                                <i class="fas fa-dollar-sign"></i> <span>Harga  : Rp.<span id="harga">{{$kri->price}}</span></span><br>
+                                <i class="fas fa-dollar-sign"></i> <span>Harga  : Rp.<span id="harga{{$i->id}}">{{$kri->price}}</span></span><br>
                                 <i class="fas fa-venus-mars"></i> <span>Khusus {{$i->type}}</span> <br>
                                 <i class="fas fa-expand-arrows-alt"></i> <span>Luas Kamar : {{$kri->large}}</span><br>
                                 <i class="fas fa-road"></i> <span>Jarak dari Unej  : {{$kri->distance}}</span><br>
@@ -89,9 +89,15 @@
                         </div>
                                     
                         <div class="text-right mt-4">
-                            <a href="#" class="btn btn-danger btn-action mr-1">
-                            <i class="fas fa-heart"></i>
+                            <a href="{{ route('user.favorite.store') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('fav-form{{$i->id}}').submit();"  class="btn btn-danger mr-1 @foreach($favorite as $fav) @if($fav->boarding_house_id == $i->id) d-none @endif @endforeach">
+                                <i class="fas fa-heart"></i> 
                             </a>
+                            <form id="fav-form{{$i->id}}" action="{{ route('user.favorite.store') }}" method="POST" class="d-none">
+                                @csrf
+                                <input type="number" name="boarding_house_id" id="" value="{{$i->id}}">
+                            </form>    
                         </div>
                     </div>
                 </div>
@@ -101,4 +107,12 @@
     </div>
     </section>
 </div>
+<script>
+  $(document).ready(function(){
+  // Format mata uang.
+    @foreach($indekos as $kos)
+      $( '#harga{{$kos->id}}' ).mask('#.000.000.000.000.000', {reverse: true});
+    @endforeach
+  })
+</script>
 @endsection

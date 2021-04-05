@@ -17,6 +17,6 @@ class Image extends Model
     ];
 
     public function indekos(){
-		return $this->belongsTo('App\Models\Indekos', 'boarding_house_id');
+		  return $this->belongsTo('App\Models\Indekos', 'boarding_house_id');
     }
 }

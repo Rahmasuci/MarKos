@@ -7,7 +7,7 @@
         <h1>Detail Indekos</h1>
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
-          <div class="breadcrumb-item"><a href="{{route('owner.indekos.index')}}">Indekos</a></div>
+          <div class="breadcrumb-item"><a href="{{route('user.favorite.index')}}">Favorite</a></div>
           <div class="breadcrumb-item ">Detail Indekos</div>
         </div>
     </div>
@@ -53,7 +53,7 @@
                                 <h4>Tentang</h4>
                                 <i class="fas fa-map-marker-alt"></i> <span>Alamat : {{$i->address}}</span> <br>
                                 @foreach($i->kriteria as $kri)
-                                <i class="fas fa-dollar-sign"></i> <span>Harga  : {{$kri->price}}</span><br>
+                                <i class="fas fa-dollar-sign"></i> <span >Harga  : Rp.<span id="harga{{$i->id}}">{{$kri->price}}</span><br>
                                 <i class="fas fa-venus-mars"></i> <span>Khusus {{$i->type}}</span> <br>
                                 <i class="fas fa-expand-arrows-alt"></i> <span>Luas Kamar : {{$kri->large}}</span><br>
                                 <i class="fas fa-road"></i> <span>Jarak dari Unej  : {{$kri->distance}}</span><br>
@@ -78,7 +78,7 @@
                                 @endforeach 
                             </div>
                             <div class="col-8 mt-4"> 
-                                <h4>Deskrpsi</h4>                     
+                                <h4>Deskripsi</h4>                     
                                 <p>{!!$i->description!!}</p>   
                             </div>  
                             <div class="col-4 mt-4"> 
@@ -101,4 +101,12 @@
     </div>
     </section>
 </div>
+<script>
+  $(document).ready(function(){
+  // Format mata uang.
+    @foreach($indekos as $kos)
+      $( '#harga{{$kos->id}}' ).mask('#.000.000.000.000.000', {reverse: true});
+    @endforeach
+  })
+</script>
 @endsection

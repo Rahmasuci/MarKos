@@ -68,7 +68,7 @@
                     <option value="4x4"  @foreach ($kos->kriteria as $kri) @if('4x4' == $kri->large) selected @endif @endforeach>4 x 4</option>
                     <option value="3x4"  @foreach ($kos->kriteria as $kri) @if('3x4' == $kri->large) selected @endif @endforeach>3 x 4</option>
                     <option value="3x3"  @foreach ($kos->kriteria as $kri) @if('3x3' == $kri->large) selected @endif @endforeach>3 x 3</option>
-                    <option value="4x2"  @foreach ($kos->kriteria as $kri) @if('4x2' == $kri->large) selected @endif @endforeach>3 x 2</option>
+                    <option value="3x2"  @foreach ($kos->kriteria as $kri) @if('4x2' == $kri->large) selected @endif @endforeach>3 x 2</option>
                   </select>
                 </div>
 
@@ -76,7 +76,7 @@
                   <label for="distance">Jarak Dari Universitas Jember</label>
                   <select class="form-control custom-select" name="distance" required>
                     <option selected disabled>Select One</option>
-                    <option value=">1km" @foreach ($kos->kriteria as $kri) @if('>1km' == $kri->distance) selected @endif @endforeach> < 1 Km </option>
+                    <option value="<1km" @foreach ($kos->kriteria as $kri) @if('<1km' == $kri->distance) selected @endif @endforeach> < 1 Km </option>
                     <option value="2km-5km" @foreach ($kos->kriteria as $kri) @if('2km-5km' == $kri->distance) selected @endif @endforeach>2 km-5 Km </option>
                     <option value="6km-10km" @foreach ($kos->kriteria as $kri) @if('6km-10km' == $kri->distance) selected @endif @endforeach>6 Km-10 Km</option>
                     <option value="11km-15km" @foreach ($kos->kriteria as $kri) @if('11km-15km' == $kri->distance) selected @endif @endforeach>11 Km-15 Km</option>

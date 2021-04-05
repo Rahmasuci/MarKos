@@ -1,5 +1,5 @@
 @extends('layouts.stisla')
-@section('title', 'Indekos')
+@section('title', 'Favorit Indekos')
 @section('content')
 <div class="main-content">
   <section class="section">
@@ -12,6 +12,11 @@
     </div>
 
     <div class="section-body">
+     @if($indekos->count() >= 2)
+      <div class="">
+        <button class="btn btn-primary" id="modal-compare"><i class="fas fa-check"></i> Bandingkan</button>
+      </div>
+      @endif
       <div class="row">
         @if($indekos->isNotEmpty())
         @foreach($indekos as $kos)
@@ -46,14 +51,14 @@
             </div>
         </div>
         @endforeach
-         @else
+        @else
         <div class="col-12 mt-4">
           <p class="text-center">Belum ada Favorit Indekos</p>   
         </div>
       @endif
       </div>
     </div>
-  
+    @include('pencari.favorite.compare')
     @include('pencari.favorite.delete')
   </section>
 </div>
@@ -66,6 +71,15 @@
   })
 </script>
 <script>
+$("#modal-compare").fireModal({
+    title: 'Bandingkan Indekos',
+    body: $("#modal-compare-part"),
+    footerClass: 'bg-whitesmoke',
+    autoFocus: false,
+    shown: function(modal, form) {
+      console.log(form)
+    }
+  });
 @foreach($indekos as $kos)
   $("#modal-delete-{{$kos->id}}").fireModal({
     title: 'Hapus Favorit Indekos',
@@ -78,7 +92,7 @@
   });
 @endforeach
 $('#closeModal').click(function() {
-    $('#fire-modal-1').modal('hide');
+    $('#fire-modal-2').modal('hide');
 });
 </script>
 @endsection

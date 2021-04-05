@@ -49,6 +49,10 @@ class User extends Authenticatable
 		  return $this->hasMany('App\Models\Indekos', 'owner');
     }
 
+    public function result(){
+		  return $this->hasMany('App\Models\Result', 'user_id');
+    }
+
     public function favorit(){
         return $this->belongsToMany('App\Models\Indekos', 'favorite', 'user_id', 'boarding_house_id');
     }

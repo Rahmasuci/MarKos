@@ -32,7 +32,7 @@
                 {{ $kos->name }}
                   <div class="text-muted d-inline font-weight-normal">
                   @foreach($kos->kriteria as $kri)
-                    <div class="slash"></div> Rp.<span id=harga>{{$kri->price}}</span> 
+                    <div class="slash"></div> Rp.<span id=harga{{$kos->id}}>{{$kri->price}}</span> 
                   @endforeach                     
                   </div>
                 </div>
@@ -64,5 +64,12 @@
     
   </section>
 </div>
-
+<script>
+    $(document).ready(function(){
+    // Format mata uang.
+      @foreach($indekos as $kos)
+        $( '#harga{{$kos->id}}' ).mask('#.000.000.000.000.000', {reverse: true});
+      @endforeach
+    })
+</script>
 @endsection

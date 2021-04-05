@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('indekos', [\App\Http\Controllers\Pengguna\IndekosController::class, 'index'])->name('indekos');
         Route::get('indekos/{id}', [\App\Http\Controllers\Pengguna\IndekosController::class, 'show'])->name('indekos.show');
         Route::resource('favorite', \App\Http\Controllers\Pengguna\FavoriteController::class, array('except' => array('create', 'edit', 'update')));
+        Route::post('implementasi-maut', [\App\Http\Controllers\Pengguna\MAUTController::class, 'maut'])->name('maut');
     });
 
     Route::group([

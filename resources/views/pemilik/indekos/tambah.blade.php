@@ -62,7 +62,7 @@
                     <option value="4x4">4 x 4</option>
                     <option value="3x4">3 x 4</option>
                     <option value="3x3">3 x 3</option>
-                    <option value="4x2">3 x 2</option>
+                    <option value="3x2">3 x 2</option>
                   </select>
                 </div>
 
@@ -70,7 +70,7 @@
                   <label for="distance">Jarak Dari Universitas Jember</label>
                   <select class="form-control custom-select" name="distance" required>
                     <option selected disabled>Select One</option>
-                    <option value=">1km"> < 1 Km </option>
+                    <option value="<1km"> < 1 Km </option>
                     <option value="2km-5km">2 km-5 Km </option>
                     <option value="6km-10km">6 Km-10 Km</option>
                     <option value="11km-15km">11 Km-15 Km</option>

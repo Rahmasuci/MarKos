@@ -138,15 +138,15 @@ class MAUTController extends Controller
             // ----------------------------------------------------
 
             // PENENTUAN BOBOT KONDISI---------------------------
-            if ($key[6] >= 9) {
+            if ($key[6] >= 5) {
                 $bobot_sub_kondisi = 5;
-            } elseif ($key[6] == 7 || $key[6] == 8 ) {
+            } elseif ($key[6] == 4 ) {
                 $bobot_sub_kondisi = 4;
-            } elseif ($key[6] == 6 || $key[6] == 5  ) {
+            } elseif ($key[6] == 3  ) {
                 $bobot_sub_kondisi = 3;
-            } elseif ($key[6] == 4 || $key[6] == 3 ) {
+            } elseif ($key[6] == 2 ) {
                 $bobot_sub_kondisi = 2;
-            } elseif ($key[6] == 2 || $key[6] == 1 ) {
+            } elseif ($key[6] == 1 ) {
                 $bobot_sub_kondisi = 1;
             } else{
                 $bobot_sub_kondisi = "error";
@@ -246,6 +246,8 @@ class MAUTController extends Controller
         usort($this->daftarIndekos, function($a, $b){
             return ($a->total < $b->total);
         });
+
+        // dd($this->daftarIndekos);
     }
 
     public function storeResult(){
@@ -305,7 +307,6 @@ class MAUTController extends Controller
         // ---------------------------------------------------------
 
         // UNTIK MENAMPILKAN HASIL--------------------------------
-
         $result_code = Result::where('user_id',$user_id)->orderByDesc('result_code')->first();
         $results =  Result::where('user_id',$user_id)->where('result_code', $result_code->result_code)->get();
         $criteria = collect($this->kriteria);

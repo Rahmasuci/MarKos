@@ -48,13 +48,20 @@
                         </div>
                         
                         <div class="profile-widget-description"> 
-                            <span class="badge badge-primary float-right">Rank {{$loop->iteration}}</span>                           
-                            <div class="profile-widget-name">                            
-                                {{$result->indekos->name}}
-                                <div class="text-muted d-inline font-weight-normal">
-                                    <div class="slash"></div> Khusus {{$result->indekos->type}}
-                                </div>
-                            </div>
+                            <div class="row">            
+                                <div class="col-12 mb-2">
+                                    <span class="badge badge-primary float-right">Rank {{$loop->iteration}} {{$result->result}}</span> 
+                                </div> 
+                                <div class="col-12">
+                                    <div class="profile-widget-name">                            
+                                        {{$result->indekos->name}}
+                                        <div class="text-muted d-inline font-weight-normal">
+                                        <div class="slash"></div> Khusus {{$result->indekos->type}}
+                                    </div>
+                                </div>     
+                            </div>  
+                        </div>                        
+                           
                             <i class="fas fa-map-marker-alt"> </i> <span>Alamat : {{$result->indekos->address}}</span> <br>
                             @foreach($result->indekos->kriteria as $kri)
                             <i class="fas fa-dollar-sign"></i> <span>Harga  : Rp.<span id="harga{{$result->indekos->id}}">{{$kri->price}}</span></span><br>

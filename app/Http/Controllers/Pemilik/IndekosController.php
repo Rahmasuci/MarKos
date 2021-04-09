@@ -57,8 +57,9 @@ class IndekosController extends Controller
      */
     public function store(Request $request)
     {   
-        // dd($request->file('image'));
-         $this->validate($request,[
+        $price= str_replace(".", "", $request->price);
+        
+        $this->validate($request,[
             'name'          => 'required',
             'type'          => 'required|in:putra,putri',  
             'address'       => 'required',
@@ -79,7 +80,7 @@ class IndekosController extends Controller
         ]);
 
         $kriteria = Criteria::create([
-            'price'             => $request->price,
+            'price'             => $price,
             'distance'          => $request->distance,  
             'large'             => $request->large,
             'boarding_house_id' => $indekos->id
